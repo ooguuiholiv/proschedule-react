@@ -63,12 +63,58 @@
     margin-top: 0.5rem;
 }
 
-/* Adicione uma media query para esconder a imagem Pavel quando a largura da tela for menor ou igual a 768px */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 950px) {
     .container img {
         display: none;
     }
     .logo img{
         display: block;
     }
+    .container-2 {
+        flex: 1;
+        width: 100%; /* Preenche toda a largura da tela */
+        height: 100vh; /* Preenche toda a altura da tela */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0 0 0 0;
+    }
+    
+    .logo img {
+        max-width: 70%;
+        /* Remova a margem esquerda para centralizar a imagem */
+    }
+    
+    .overPass {
+        margin-top: 1rem; /* Ajuste conforme necessário */
+        font-family: sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 24px;
+        text-align: center;
+        width: 100%;
+        color: #566A7F;
+        cursor: pointer;
+    }
+    
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: Public Sans;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 17.63px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+    
+    .buttons button {
+        width: 100%;
+        max-width: 293px;
+        margin-top: 0.5rem;
+    }
+    
 }

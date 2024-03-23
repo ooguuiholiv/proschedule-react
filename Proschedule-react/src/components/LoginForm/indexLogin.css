@@ -70,3 +70,108 @@ p{
     text-align: left;
     color: #566A7F;
 }
+@media screen and (max-width: 950px){
+    .container-3 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 397px; /* Define a largura máxima */
+    }
+    
+    .container-3 > div {
+        display: flex;
+        align-items: center;
+        width: 100%; /* Use a largura total do container */
+        height: 38px;
+        gap: 0px;
+        opacity: 0px;
+        position: relative;
+    }
+    
+    .container-3 .icon {
+        width: 10%; /* Ajusta a largura do ícone para 10% */
+        height: 40px;
+        gap: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0px;
+        color: #E5E7EB;
+        border-radius: 10px 0px 0px 10px;
+        background-color: #ffffff;
+    }
+    
+    .container-3 input {
+        width: calc(90% - 38px); /* Calcula a largura para acomodar o ícone */
+        height: 100%;
+        padding-left: 38px;
+        border: none;
+        border-radius: 0px 10px 10px 0px;
+        color: #E5E7EB;
+        background-color: #ffffff;
+        font-family: Public Sans;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 24px;
+        text-align: left;
+    }
+    
+    .container-3 input::placeholder {
+        color: #E5E7EB;
+    }
+    
+    .container-3 .divider {
+        width: 5px;
+        height: 38px;
+        left: 37px;
+        gap: 0px;
+        border: none;
+    }
+    
+    p {
+        font-family: sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 14.1px;
+        text-align: left;
+        color: #566A7F;
+    }
+    
+}
+@media (max-width: 450px) {
+    .container-3 {
+        padding: 0 5%; /* Define 5% de espaço em cada lado */
+        margin-left: 5%;
+    }
+
+    .container-3 .icon {
+        width: 15%; /* Ajusta a largura do ícone para 15% */
+    }
+
+    .container-3 input {
+        width: calc(100% - 43px); /* Calcula a largura para acomodar o ícone e o divisor */
+        max-width: 250px; /* Define a largura máxima */
+        margin: 0 auto; /* Centraliza horizontalmente */
+        margin-right: 5px; /* Adiciona uma margem direita */
+        margin-left: -0.09rem;
+    }
+
+    .container-3 .divider {
+        width: 1px; /* Ajusta a largura do divisor */
+        height: 38px;
+    }
+    p{
+        font-family: sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 14.1px;
+        text-align: left;
+        color: #566A7F;
+        margin-top: 1rem;
+        margin-left: -3.5rem;
+    }
+}
+
+
