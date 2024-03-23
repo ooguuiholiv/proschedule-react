@@ -33,3 +33,9 @@
     line-height: 14.1px;
     text-align: center;
 }
+
+.resend{
+    margin-top: 0.25rem;
+    color: #566A7F;
+    cursor: pointer;
+}
