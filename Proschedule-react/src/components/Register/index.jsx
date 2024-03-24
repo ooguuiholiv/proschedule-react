@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
+import Buttons from '../Buttons/index';
+import LogoLogin from '../LogoLogin';
 import './indexRegister.css';
 
-export default function Register() {
+export default function Register({ onRegisterClick, onBackToLoginClick }) { // Recebe a função como prop
     const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -37,12 +39,16 @@ export default function Register() {
         } catch (error) {
             console.error('Erro ao cadastrar usuário:', error);
         }
+
+        // Chame a função recebida como prop
+        onRegisterClick();
     };
 
     return (
-        <div className="container-3">
+        <div className="container-register-form">
+            <LogoLogin/>
             <p>CADASTRE-SE AGORA MESMO</p>
-            <div className="input-container-3">
+            <div className="input-container-register-form">
                 <div className="icon">
                     <FontAwesomeIcon icon={faUser} />
                 </div>
@@ -55,7 +61,7 @@ export default function Register() {
                     onChange={(e) => setFullname(e.target.value)} 
                 />
             </div>
-            <div className="input-container-3">
+            <div className="input-container-register-form">
                 <div className="icon">
                     <FontAwesomeIcon icon={faUser} />
                 </div>
@@ -68,7 +74,7 @@ export default function Register() {
                     onChange={(e) => setEmail(e.target.value)} 
                 />
             </div>
-            <div className="input-container-3">
+            <div className="input-container-register-form">
                 <div className="icon">
                     <FontAwesomeIcon icon={faLock} />
                 </div>
@@ -82,9 +88,15 @@ export default function Register() {
                 />
             </div>
             <a href="#"><u>Ao clicar em register você concorda com os termos de usuário</u></a>
-            <div className='buttons'>
-                <button onClick={handleRegisterClick}>Register</button>
-                <button>Login</button>
+            <div className="button-container">
+                <Buttons 
+                    buttonText="Register" 
+                    onClick={handleRegisterClick} 
+                />
+                <Buttons
+                        buttonText="Voltar para login"
+                        onClick={onBackToLoginClick}
+                />
             </div>
         </div>
     );

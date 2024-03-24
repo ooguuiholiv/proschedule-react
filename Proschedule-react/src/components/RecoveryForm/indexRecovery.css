@@ -1,41 +1,37 @@
-.container-3 {
+.container-recovery-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-
-.container-3 > div {
+.container-recovery-form > div {
     display: flex;
-    align-items: center;
-    width: 397px;
-    height: 38px;
-    gap: 0px;
-    opacity: 0px;
+    align-items: stretch;
+    width: 100%;
+    gap: 10px;
     position: relative;
 }
 
-.container-3 .icon {
+.container-recovery-form .icon {
     width: 40px;
     height: 40px;
-    top: 11px;
-    left: 11px;
-    gap: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0px;
     color: #E5E7EB;
     border-radius: 10px 0px 0px 10px;
     background-color: #ffffff;
 }
 
-
-.container-3 input {
-    width: calc(100% - 38px); /* Calcula a largura para acomodar o ícone */
-    height: 100%;
-    padding-left: 38px;
+.container-recovery-form input {
+    flex: 1;
+    height: 38px;
+    margin-left: -0.75rem;
     border: none;
     border-radius: 0px 10px 10px 0px;
     color: #E5E7EB;
@@ -47,56 +43,33 @@
     text-align: left;
 }
 
-.container-3 input::placeholder {
+.container-recovery-form input::placeholder {
     color: #E5E7EB;
 }
 
-.container-3 .divider {
-    width: 5px;
-    height: 38px;
-    left: 37px;
-    gap: 0px;
-    border: none;
-    
-}
-
-.buttons{
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: Public Sans;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 17.63px;
-    letter-spacing: 0.4285714328289032px;
-    text-align: center;
-    color: #FFFFFF;
-}
-
-.buttons button{
-    display: flex;
-    width: 293px;
-    height: 45px;
-    top: 563px;
-    margin-top: 0.5rem;
-    left: 793px;
-    padding: 1.25rem;
-    gap: 0px;
-    opacity: 0px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: none;
-    border-radius: 10px 10px 10px 10px;
-    background-color: rgb(36, 73, 192);
-}
-p{
+p {
     font-family: sans-serif;
     font-size: 15px;
     font-weight: 500;
     line-height: 14.1px;
     text-align: left;
     color: #566A7F;
+}
+
+.overPass {
+    margin-top: 1rem;
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: #566A7F;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
 }
