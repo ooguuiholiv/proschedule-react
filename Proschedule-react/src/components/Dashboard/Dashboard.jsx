@@ -1,4 +1,7 @@
 import React from "react";
+import MeetingScheduled from "./MeetingScheduledCard";
+import Header from "./designerBody/Header.jsx";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   // Simulando dados de atendimentos e reuniões pendentes
@@ -70,80 +73,61 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <div className="header">
-        <div className="header-links">
-          <a href="#">DASHBOARD</a>
-          <a href="#">EVENTS</a>
-          <a href="#">SCHEDULED EVENTS</a>
-        </div>
-        <div className="user-profile">
-          <img
-            src="proschedule-react/Proschedule-react/src/assets/icon-perfil.jpg"
-            alt="User Icon"
-            className="user-icon"
-          />
-          <div className="perfil">
-            <span className="user-name">Rick Sanches</span> <br />
-            <span className="occupation">Engenheiro de software</span>
-          </div>
-        </div>
-      </div>
-      <div className="cards">
-        <div className="months-agenda">
-          <p>Agenda do mês</p>
-          {/* Card de Atendimentos Realizados */}
-          <div className="card made">
-            <span className="circle-green"></span>
-            <h2>Atendimentos Realizados</h2>
-            <p>Você efetuou {completedAppointments.length} atendimento(s)</p>
-
-            <p className="data">
-              <img src="proschedule-react/Proschedule-react/src/assets/calendar3.svg" />{" "}
-              {getLastAppointmentDate(completedAppointments)}
-            </p>
-          </div>
-
-          {/* Card de Atendimentos Cancelados */}
-          <div className="card canceled">
-            <span className="circle-red"></span>
-            <h2>Atendimentos Cancelados</h2>
-            <p>Você cancelou {canceledAppointments.length} atendimento(s)</p>
-            <p className="data">
-              <img src="proschedule-react/Proschedule-react/src/assets/calendar3.svg" />{" "}
-              {getLastAppointmentDate(canceledAppointments)}
-            </p>
-          </div>
-
-          {/* Card de Atendimentos Adiados */}
-          <div className="card postponed">
-            <span className="circle-blueLight"></span>
-            <h2>Atendimentos Adiados</h2>
-            <p>Você adiou {postponedAppointments.length} atendimento(s)</p>
-            <p className="data">
-              <img src="proschedule-react/Proschedule-react/src/assets/calendar3.svg" />{" "}
-              {getLastAppointmentDate(postponedAppointments)}
-            </p>
-          </div>
-        </div>
-        {/* Card de Reuniões Marcadas */}
-        <div className="meetings-scheduled">
-          <h2>Reuniões Marcadas</h2>
-          {meetingsScheduled.map((meeting, index) => (
-            <div className="card meeting" key={index}>
-              <p>
-                <strong>{meeting.name}</strong>-{meeting.duration}
-              </p>
-              <p>
-                <strong>Solicitada por:</strong> {meeting.requestedBy}
-              </p>
-              <p>
+      <Header />
+      <div className="content">
+        <div className="cards">
+          <div className="months-agenda">
+            <p className="agenda-header">Agenda do mês</p>
+            {/* Card de Atendimentos Realizados */}
+            <div className="agenda-cards-container">
+              <div className="agenda-card made">
+                <span className="circle-green"></span>
+                <h3>Atendimentos Realizados</h3>
+                <p>Você efetuou {completedAppointments.length} atendimento(s)</p>
                 <p className="data">
-                  <img src="proschedule-react/Proschedule-react/src/assets/calendar3.svg" />{" "}
+                  <img src="proschedule-react/Proschedule-react/src/assets/calendar3.svg" alt="calendar icon" />{" "}
+                  {getLastAppointmentDate(completedAppointments)}
+                </p>
+              </div>
+
+              {/* Card de Atendimentos Cancelados */}
+              <div className="agenda-card canceled">
+                <span className="circle-red"></span>
+                <h3>Atendimentos Cancelados</h3>
+                <p>Você cancelou {canceledAppointments.length} atendimento(s)</p>
+                <p className="data">
+                  <img src="proschedule-react/Proschedule-react/src/assets/calendar3.svg" alt="calendar icon" />{" "}
+                  {getLastAppointmentDate(canceledAppointments)}
+                </p>
+              </div>
+
+              {/* Card de Atendimentos Adiados */}
+              <div className="agenda-card postponed">
+                <span className="circle-blueLight"></span>
+                <h3>Atendimentos Adiados</h3>
+                <p>Você adiou {postponedAppointments.length} atendimento(s)</p>
+                <p className="data">
+                  <img src="proschedule-react/Proschedule-react/src/assets/calendar3.svg" alt="calendar icon" />{" "}
                   {getLastAppointmentDate(postponedAppointments)}
                 </p>
-              </p>
+              </div>
             </div>
-          ))}
+          </div>
+          {/* Card de Reuniões Marcadas */}
+          <div className="meetings">
+            <p className="meetings-header">Reuniões Marcadas</p>
+            <div className="meetings-cards-container">
+              {meetingsScheduled.map((meeting, index) => (
+                <div className="meeting-card" key={index}>
+                  <MeetingScheduled key={index} meeting={meeting} />
+                  <p className="data">
+                    <img src="proschedule-react/Proschedule-react/src/assets/calendar3.svg" alt="calendar icon" />{" "}
+                    {getLastAppointmentDate(postponedAppointments)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Belanosima:wght@700&family=Poppins&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Shantell+Sans:ital,wght@1,300&family=Solway&display=swap");
+
+* {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #1c1b1b; /* Fundo escuro */
+}
+.dashboard {
+  color: rgb(0, 0, 0);
+  min-height: 130vh;
+}
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  
+  align-items: center;
+  padding: 13px;
+  background-color: #303030;
+  color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Estilos para o ícone do menu hamburguer */
+.menu-icon {
+  display: none;
+  cursor: pointer;
+  background: url('../../../assets/menu-icon.svg') no-repeat center;
+  width: 30px;
+  height: 30px;
+  top: 2rem;
+
+  position: absolute;
+  transition: transform 0.3s;
+  left: 1rem;
+  transform: translateY(-50%);
+}
+.menu-open {
+  overflow: hidden;
+}
+.menu-icon.open .bar:first-child {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.menu-icon.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-icon.open .bar:last-child {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+/* Estilos para os links do menu hamburguer */
+.header-links {
+  display: flex;
+  align-items: center;
+  position: relative;
+  
+}
+
+.header-links a {
+  margin-right: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+/* Estilos para o perfil do usuário */
+.user-profile {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  position: relative; /* Adicionado */
+}
+
+.user-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.occupation {
+  font-size: 14px;
+  color: gray;
+  text-decoration: dotted;
+}
+
+/* Estilos para os links do cabeçalho */
+.header-links a {
+  margin-right: 20px;
+  color: white;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s, transform 0.3s;
+}
+
+/* Pseudo-elemento para criar o efeito de destaque */
+.header-links a::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+  transition: background-color 0.3s;
+}
+
+/* Animação de destaque ao passar o mouse sobre os links */
+.header-links a:hover::before {
+  background-color: #fc5f54; /* Cor de destaque */
+}
+
+/* Animação de escala ao passar o mouse sobre os links */
+.header-links a:hover {
+  transform: scale(1.1); /* Aumenta a escala do link */
+}
+
+/* Estilos para o menu hamburguer em telas menores */
+@media screen and (max-width: 768px) {
+  
+  .header{
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    flex-direction: row-reverse;
+    overflow: hidden;
+ 
+    
+  }
+  .menu-icon {
+    display: block;
+  }
+  
+  .header-links {
+  
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    overflow: hidden;
+    justify-content: center;
+    top: 16%;
+    left: 0;
+    line-height:3rem;
+    background-color: #303030;
+    width: 100%;
+    height: 86%;
+    padding: 10px 0;
+    border-radius: 0 0 10px 10px;
+    z-index: 1000; /* Garante que o menu esteja acima de outros elementos */
+    transition: opacity 0.3s, visibility 0.3s; /* Adicionado efeito de transição */
+    opacity: 0; /* Inicia o menu como invisível */
+    visibility: hidden; /* Inicia o menu como invisível */
+  }
+
+  .header-links.open {
+    display: flex;
+    flex-direction: column; /* Adicionado */
+    align-items: center;
+  
+    opacity: 1; /* Torna o menu visível */
+    visibility: visible; /* Torna o menu visível */
+  }
+
+  .header-links.open a {
+   
+    color: white;
+    text-decoration: none;
+    margin: 5px 0
+    
+  }
+}

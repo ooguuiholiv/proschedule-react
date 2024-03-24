@@ -1,155 +1,116 @@
-/* CSS Reset */
+@import url('./designerBody/bodyDesigner.css');
+@import url('./dashboardResponsividade.css');
+
+/* Estilos do conteúdo */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Estilos da Dashboard */
-.dashboard {
-  font-family: Arial, sans-serif;
-  background-color: #1c1b1b; /* Fundo escuro */
-  color: rgb(0, 0, 0);
+body {
   min-height: 100vh;
-}
-
-/* Estilos do cabeçalho */
-.header {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  background-color: #303030;
-  color: white;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
 }
 
-/* Estilos dos links do cabeçalho */
-.header-links {
-  display: flex;
-  align-items: center;
-  position: relative;
-  left: 2rem; /* Alterado para um valor relativo */
-}
-
-.header-links a {
-  margin-right: 20px;
-  color: white;
-  text-decoration: none;
-}
-
-/* Estilos do perfil do usuário */
-.user-profile {
-  display: flex;
-  align-items: center;
-  font-size: 20px;
-}
-
-.user-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-/* Estilos da ocupação */
-.occupation {
-  font-size: 14px;
-  color: gray;
-  text-decoration: dotted;
-}
-
-/* Estilos do conteúdo */
 .content {
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
 /* Estilos dos cards */
 .cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  /* espaço entre um elemento interno e outro */
+  grid-gap: 0px 80px;
+  /* margem interna que afasta os elementos da borda do grid */
+  
+  padding: 5rem;
+  width: 20%;
+  flex-wrap: wrap; /* Adicionado para permitir que os cards quebrem linha quando não houver espaço */
 }
 
 .card {
-  max-width: 300px;
-  margin: 10px;
-  padding: 10px;
+  margin: 20rem; /* Adicionado espaçamento entre os cards */
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #ffffff;
   font-size: 14px;
-  position: relative;
+  flex: 1 0 300px; /* Define a largura dos cards */
+  max-width: 300px;
+  background-color: #333;
+  
 }
-
-.data {
-  font-size: 12px;
-  text-decoration: double;
-  color: gray;
-}
-
-/* Estilos da agenda mensal e reuniões marcadas */
 .months-agenda,
-.meetings-scheduled {
-  background-color: rgb(60, 60, 60);
-  border-radius: 10px;
-  width: 30%; /* Ajuste de largura */
-  margin-left: 1rem; /* Margem adequada */
-  margin-right: 1rem;
-}
+.meetings{
+background-color: #333;
+width: 30rem;
+margin-left: 2.5rem;
+border-radius: 8px;
 
-.months-agenda > p,
-.meetings-scheduled > h2 {
+}
+.agenda-header,
+.meetings-header {
+ 
   font-size: 20px;
-  border-bottom: 1px solid rgb(255, 254, 254);
+  border-bottom: 3px solid rgb(90, 90, 90);
   color: white;
-  margin: 8px 5rem;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto; /* Centraliza o cabeçalho */
 }
 
-.months-agenda .card,
-.meetings-scheduled .card {
-  width: 100%;
+.agenda-cards-container,
+.meetings-cards-container {
+
+  background-color: #333;
   display: flex;
   flex-direction: column;
-  margin-left: 3.5rem;
   justify-content: center;
-  align-items: start;
-  text-align: start;
+ 
+ margin:0rem 5rem;
+ 
 }
 
-/* Estilos dos títulos dos cards */
-.card h2 {
-  font-size: 16px;
-  margin-bottom: 10px;
+.agenda-card,
+.meeting-card {
+  background-color: #333;
+  width: 23rem;
+  height: 6rem;
+  font-size: 14px;
+  background-color: #ffffff;
+  margin: 0.4rem 1rem; /* Centraliza os cards */
+  margin-left: -1rem;
+  border-radius: 7px;
+}
+.meeting-card >p{
+  margin-left:1rem ;
+}
+.agenda-card > h3,
+.agenda-card > p{
+  margin-left: 3rem;
+  margin-bottom: 0.5rem;
+}
+.meetings-scheduled{
+  margin-left: 1rem;
+margin-top: 0.5rem;
+}
+.meetings-scheduled > p{
+  margin-bottom: 1rem;
+  
+}
+
+.circle-green,
+.circle-red,
+.circle-blueLight {
+  top: 2.4rem;
   position: relative;
-  padding-left: 35px;
-}
-
-/* Estilos dos parágrafos dos cards */
-.card p {
-  margin-bottom: 5px;
-}
-
-/* Estilizando os círculos */
-.card::before {
-  content: "";
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  margin-right: 10px;
-  position: absolute;
-  left: 5px;
-  top: 50%;
-  transform: translateY(-50%);
+  padding: 20px;
 }
 
 .circle-green::before,
@@ -157,11 +118,10 @@
 .circle-blueLight::before {
   content: "";
   display: inline-block;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   margin-right: 10px;
-
   position: absolute;
   left: 5px;
   top: 20%;
@@ -170,7 +130,7 @@
 
 /* Estilos do círculo verde */
 .circle-green::before {
-  background-color: green;
+  background-color: rgb(43, 255, 43);
 }
 
 /* Estilos do círculo vermelho */
@@ -180,18 +140,105 @@
 
 /* Estilos do círculo azul claro */
 .circle-blueLight::before {
-  background-color: lightblue;
+  background-color: rgb(46, 124, 243);
 }
 
-/* Consulta de mídia para telas menores */
-@media screen and (max-width: 768px) {
-  .header-links {
-    left: 1rem; /* Ajuste para telas menores */
+@media screen and (max-width:1209px){
+  .agenda-card,
+  .meeting-card {
+    width: auto;
+    
+    
+  }
+  .months-agenda,
+.meetings{
+  width: auto;
+  margin-right: 3rem;
+  margin-left: -3rem
+  
+}
+}
+@media screen and (max-width: 976px){
+  .cards {
+    margin-top:-4rem;
+    grid-template-columns: 1fr; /* Altera para uma coluna */
+   margin-left: 8rem;
+  }
+.meetings{
+  margin-top: 2rem;
+}
+}
+
+@media screen and (max-width: 720px) {
+  .cards {
+   
+   margin-left: 4rem;
+  }
+}
+@media screen and (max-width: 576px) {
+  .months-agenda,
+.meetings{
+  margin-left: -8rem;
+  width: 20rem;
+}
+  .agenda-header,
+  .meetings-header {
+    font-size: 16px; /* Reduz o tamanho do texto do cabeçalho */
   }
 
-  .months-agenda,
+  .agenda-card,
+  .meeting-card {
+    width: 14rem; /* Define a largura automática */
+    margin: 0.4rem -2rem; /* Ajusta o espaçamento entre os cards */
+  }
+
+  .agenda-card > h3,
+  .agenda-card > p {
+    margin-left: 1rem; /* Ajusta a margem do texto */
+  }
+
   .meetings-scheduled {
-    width: 100%; /* Altera para largura total */
-    margin: 1rem 0; /* Ajuste de margem para telas menores */
+    margin-left: 0rem; /* Ajusta a margem */
+  }
+
+  .meetings-scheduled > p {
+    margin-bottom: 0.5rem; /* Ajusta a margem */
+  }
+  .circle-green::before,
+.circle-red::before,
+.circle-blueLight::before{
+  width: 20px;
+  height: 20px;
+  position: relative;
+  left: 5rem;
+  top: -1.5rem;
+}
+}
+@media screen and (max-width:346px) {
+  .months-agenda,
+  .meetings{
+
+    width: 17rem;
+  }
+  .agenda-card,
+  .meeting-card {
+   width: 14rem;
+   margin-left: -4rem;
+  }
+  .meetings-header,
+  .agenda-header{
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width:302px) {
+  .agenda-card,
+  .meeting-card {
+  
+   margin-left: -4rem;
+  }
+  .months-agenda,
+  .meetings{
+    margin-left: -8.5rem;
   }
 }
