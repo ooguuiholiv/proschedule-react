@@ -35,16 +35,15 @@ export default function LoginPage() {
         setShowVerifyEmail(true);
     };
 
-    const handlerVerifySucess = () => {
+    const handlerVerifySuccess = () => {
         setShowRecoveryForm(true)
         setShowVerifyEmail(false);
     }
-    
 
     return (
         <div className="container">
-            <div className='container-1'>
-                <img src={pavel} alt="Pavel" />
+            <div className='container-1 d-none d-md-block'>
+                <img src={pavel} alt="Pavel" className="img-fluid" />
             </div>
             <div className="container-2">
                 {showLoginForm ? (
@@ -54,9 +53,10 @@ export default function LoginPage() {
                 ) : showRegisterForm ? (
                     <Register onBackToLoginClick={handleBackToLoginClick} />
                 ) : showVerifyEmail ? (
-                    <VerifyEmail onResendEmailClick={handlerVerifySucess} />
+                    <VerifyEmail onResendEmailClick={handlerVerifySuccess} />
                 ) : null}
             </div>
         </div>
     );
 }
+
