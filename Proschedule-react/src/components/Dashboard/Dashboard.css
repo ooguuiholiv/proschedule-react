@@ -1,5 +1,4 @@
-@import url('./designerBody/bodyDesigner.css');
-@import url('./dashboardResponsividade.css');
+@import url("./designerBody/bodyDesigner.css");
 
 /* Estilos do conteúdo */
 * {
@@ -27,7 +26,7 @@ body {
   /* espaço entre um elemento interno e outro */
   grid-gap: 0px 80px;
   /* margem interna que afasta os elementos da borda do grid */
-  
+
   padding: 5rem;
   width: 20%;
   flex-wrap: wrap; /* Adicionado para permitir que os cards quebrem linha quando não houver espaço */
@@ -41,19 +40,16 @@ body {
   flex: 1 0 300px; /* Define a largura dos cards */
   max-width: 300px;
   background-color: #333;
-  
 }
 .months-agenda,
-.meetings{
-background-color: #333;
-width: 30rem;
-margin-left: 2.5rem;
-border-radius: 8px;
-
+.meetings {
+  background-color: #333;
+  width: 30rem;
+  margin-left: 2.5rem;
+  border-radius: 8px;
 }
 .agenda-header,
 .meetings-header {
- 
   font-size: 20px;
   border-bottom: 3px solid rgb(90, 90, 90);
   color: white;
@@ -67,14 +63,12 @@ border-radius: 8px;
 
 .agenda-cards-container,
 .meetings-cards-container {
-
   background-color: #333;
   display: flex;
   flex-direction: column;
   justify-content: center;
- 
- margin:0rem 5rem;
- 
+
+  margin: 0rem 5rem;
 }
 
 .agenda-card,
@@ -88,21 +82,20 @@ border-radius: 8px;
   margin-left: -1rem;
   border-radius: 7px;
 }
-.meeting-card >p{
-  margin-left:1rem ;
+.meeting-card > p {
+  margin-left: 1rem;
 }
 .agenda-card > h3,
-.agenda-card > p{
+.agenda-card > p {
   margin-left: 3rem;
   margin-bottom: 0.5rem;
 }
-.meetings-scheduled{
+.meetings-scheduled {
   margin-left: 1rem;
-margin-top: 0.5rem;
+  margin-top: 0.5rem;
 }
-.meetings-scheduled > p{
+.meetings-scheduled > p {
   margin-bottom: 1rem;
-  
 }
 
 .circle-green,
@@ -143,44 +136,40 @@ margin-top: 0.5rem;
   background-color: rgb(46, 124, 243);
 }
 
-@media screen and (max-width:1209px){
+@media screen and (max-width: 1209px) {
   .agenda-card,
   .meeting-card {
     width: auto;
-    
-    
   }
   .months-agenda,
-.meetings{
-  width: auto;
-  margin-right: 3rem;
-  margin-left: -3rem
-  
-}
-}
-@media screen and (max-width: 976px){
-  .cards {
-    margin-top:-4rem;
-    grid-template-columns: 1fr; /* Altera para uma coluna */
-   margin-left: 8rem;
+  .meetings {
+    width: auto;
+    margin-right: 3rem;
+    margin-left: -3rem;
   }
-.meetings{
-  margin-top: 2rem;
 }
+@media screen and (max-width: 976px) {
+  .cards {
+    margin-top: -4rem;
+    grid-template-columns: 1fr; /* Altera para uma coluna */
+    margin-left: 8rem;
+  }
+  .meetings {
+    margin-top: 2rem;
+  }
 }
 
 @media screen and (max-width: 720px) {
   .cards {
-   
-   margin-left: 4rem;
+    margin-left: 4rem;
   }
 }
 @media screen and (max-width: 576px) {
   .months-agenda,
-.meetings{
-  margin-left: -8rem;
-  width: 20rem;
-}
+  .meetings {
+    margin-left: -8rem;
+    width: 20rem;
+  }
   .agenda-header,
   .meetings-header {
     font-size: 16px; /* Reduz o tamanho do texto do cabeçalho */
@@ -205,40 +194,38 @@ margin-top: 0.5rem;
     margin-bottom: 0.5rem; /* Ajusta a margem */
   }
   .circle-green::before,
-.circle-red::before,
-.circle-blueLight::before{
-  width: 20px;
-  height: 20px;
-  position: relative;
-  left: 5rem;
-  top: -1.5rem;
+  .circle-red::before,
+  .circle-blueLight::before {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    left: 5rem;
+    top: -1.5rem;
+  }
 }
-}
-@media screen and (max-width:346px) {
+@media screen and (max-width: 346px) {
   .months-agenda,
-  .meetings{
-
+  .meetings {
     width: 17rem;
   }
   .agenda-card,
   .meeting-card {
-   width: 14rem;
-   margin-left: -4rem;
+    width: 14rem;
+    margin-left: -4rem;
   }
   .meetings-header,
-  .agenda-header{
+  .agenda-header {
     font-size: 12px;
   }
 }
 
-@media screen and (max-width:302px) {
+@media screen and (max-width: 302px) {
   .agenda-card,
   .meeting-card {
-  
-   margin-left: -4rem;
+    margin-left: -4rem;
   }
   .months-agenda,
-  .meetings{
+  .meetings {
     margin-left: -8.5rem;
   }
 }

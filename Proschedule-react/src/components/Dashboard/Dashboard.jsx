@@ -83,9 +83,11 @@ const Dashboard = () => {
               <div className="agenda-card made">
                 <span className="circle-green"></span>
                 <h3>Atendimentos Realizados</h3>
-                <p>Você efetuou {completedAppointments.length} atendimento(s)</p>
+                <p>
+                  Você efetuou {completedAppointments.length} atendimento(s)
+                </p>
                 <p className="data">
-                  <img src="proschedule-react/Proschedule-react/src/assets/calendar3.svg" alt="calendar icon" />{" "}
+                  <img src="src/assets/calendar3.svg" alt="calendar icon" />{" "}
                   {getLastAppointmentDate(completedAppointments)}
                 </p>
               </div>
@@ -94,9 +96,11 @@ const Dashboard = () => {
               <div className="agenda-card canceled">
                 <span className="circle-red"></span>
                 <h3>Atendimentos Cancelados</h3>
-                <p>Você cancelou {canceledAppointments.length} atendimento(s)</p>
+                <p>
+                  Você cancelou {canceledAppointments.length} atendimento(s)
+                </p>
                 <p className="data">
-                  <img src="proschedule-react/Proschedule-react/src/assets/calendar3.svg" alt="calendar icon" />{" "}
+                  <img src="src/assets/calendar3.svg" alt="calendar icon" />{" "}
                   {getLastAppointmentDate(canceledAppointments)}
                 </p>
               </div>
@@ -107,7 +111,7 @@ const Dashboard = () => {
                 <h3>Atendimentos Adiados</h3>
                 <p>Você adiou {postponedAppointments.length} atendimento(s)</p>
                 <p className="data">
-                  <img src="proschedule-react/Proschedule-react/src/assets/calendar3.svg" alt="calendar icon" />{" "}
+                  <img src="src/assets/calendar3.svg" alt="calendar icon" />{" "}
                   {getLastAppointmentDate(postponedAppointments)}
                 </p>
               </div>
@@ -121,7 +125,7 @@ const Dashboard = () => {
                 <div className="meeting-card" key={index}>
                   <MeetingScheduled key={index} meeting={meeting} />
                   <p className="data">
-                    <img src="proschedule-react/Proschedule-react/src/assets/calendar3.svg" alt="calendar icon" />{" "}
+                    <img src="src/assets/calendar3.svg" alt="calendar icon" />{" "}
                     {getLastAppointmentDate(postponedAppointments)}
                   </p>
                 </div>

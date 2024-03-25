@@ -1,5 +1,5 @@
 @import url("./buttonStyle.css");
-@import url('../designerBody/bodyDesigner.css');
+@import url("../designerBody/bodyDesigner.css");
 * {
   font-family: "Roboto", sans-serif;
 }
@@ -9,6 +9,13 @@
   width: 20rem;
   height: 14rem;
   align-items: start;
+}
+
+#showFormButton > img {
+  transition: 0.5s;
+}
+#showFormButton > img:hover {
+  width: 11rem;
 }
 #showFormButton > img {
   width: 10rem;
@@ -73,7 +80,7 @@ p {
   z-index: 1; /* Coloca o modal acima de todo o conteúdo */
   left: 0;
   top: -0.5rem;
-right: 2rem;
+  right: 2rem;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro translúcido */
@@ -90,16 +97,12 @@ right: 2rem;
   min-height: 20rem;
   width: 40%; /* Largura do modal */
   border-radius: 10px;
-  
- 
 }
 .close {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
-
-  
 }
 
 .close:hover,
@@ -131,23 +134,23 @@ select {
   position: relative;
   left: 24.2rem;
   bottom: 7rem;
-  background-color: #333; 
+  background-color: #333;
   color: white;
-  border: none; 
-  border-radius: 4px; 
+  border: none;
+  border-radius: 4px;
   padding: 15px;
-  margin: 5px 0; 
+  margin: 5px 0;
 }
-#customTimeInput{
-  background-color: #333; 
+#customTimeInput {
+  background-color: #333;
   color: white;
-  border: none; 
-  border-radius: 4px; 
+  border: none;
+  border-radius: 4px;
   padding: 15px;
-  margin: 5px 0; 
+  margin: 5px 0;
   position: relative;
   left: 13rem;
-  
+
   bottom: 3rem;
 }
 
@@ -160,12 +163,9 @@ ul {
   color: white;
   list-style: none;
   position: relative;
-top: 4rem;
-left: 2rem;
-  
-  
+  top: 4rem;
+  left: 2rem;
 }
-
 
 #submitButton {
   color: white;
