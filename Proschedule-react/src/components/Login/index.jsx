@@ -4,7 +4,7 @@ import LoginForm from '../LoginForm';
 import RecoveryForm from '../RecoveryForm';
 import VerifyEmail from '../VerifyEmail';
 import Register from '../Register';
-import './index.css';
+import { Container, Container1, Image, Container2 } from './styles';
 
 export default function LoginPage() {
     const [showLoginForm, setShowLoginForm] = useState(true);
@@ -36,16 +36,16 @@ export default function LoginPage() {
     };
 
     const handlerVerifySuccess = () => {
-        setShowRecoveryForm(true)
+        setShowRecoveryForm(true);
         setShowVerifyEmail(false);
-    }
+    };
 
     return (
-        <div className="container">
-            <div className='container-1 d-none d-md-block'>
-                <img src={pavel} alt="Pavel" className="img-fluid" />
-            </div>
-            <div className="container-2">
+        <Container>
+            <Container1 className='d-none d-md-block'>
+                <Image src={pavel} alt="Pavel" />
+            </Container1>
+            <Container2>
                 {showLoginForm ? (
                     <LoginForm onForgotPasswordClick={handleForgotPasswordClick} onRegisterClick={handleRegisterClick} />
                 ) : showRecoveryForm ? (
@@ -55,8 +55,7 @@ export default function LoginPage() {
                 ) : showVerifyEmail ? (
                     <VerifyEmail onResendEmailClick={handlerVerifySuccess} />
                 ) : null}
-            </div>
-        </div>
+            </Container2>
+        </Container>
     );
 }
-

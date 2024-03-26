@@ -5,10 +5,12 @@ import viteLogo from "/vite.svg";
 import LoginPage from "./components/Login";
 import Dashboard from "./components/Dashboard/Dashboard";
 import ResetPassword from "./components/ResetPassword";
+import SinglePage from "./components/SinglePage";
+
 export default function App() {
   return (
     <div>
-      <LoginPage></LoginPage>
+      <SinglePage></SinglePage>
     </div>
   );
 }
