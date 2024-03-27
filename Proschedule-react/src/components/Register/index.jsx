@@ -3,9 +3,83 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import Buttons from '../Buttons/index';
 import LogoLogin from '../LogoLogin';
-import './indexRegister.css';
+import styled from 'styled-components';
 
-export default function Register({ onRegisterClick, onBackToLoginClick }) { // Recebe a função como prop
+const ContainerRegisterForm = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+`;
+
+const InputContainer = styled.div`
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    gap: 10px;
+    position: relative;
+`;
+
+const IconContainer = styled.div`
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #E5E7EB;
+    border-radius: 10px 0px 0px 10px;
+    background-color: #ffffff;
+`;
+
+const Input = styled.input`
+    flex: 1;
+    height: 38px;
+    margin-left: -0.75rem;
+    border: none;
+    border-radius: 0px 10px 10px 0px;
+    color: #E5E7EB;
+    background-color: #ffffff;
+    font-family: Public Sans;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+
+    &::placeholder {
+        color: #E5E7EB;
+    }
+`;
+
+const Message = styled.p`
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 14.1px;
+    text-align: left;
+    color: #566A7F;
+`;
+
+const Link = styled.a`
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 14.1px;
+    text-align: left;
+    color: #566A7F;
+`;
+
+const ButtonContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+`;
+
+export default function Register({ onRegisterClick, onBackToLoginClick }) {
     const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -45,59 +119,56 @@ export default function Register({ onRegisterClick, onBackToLoginClick }) { // R
     };
 
     return (
-        <div className="container-register-form">
+        <ContainerRegisterForm>
             <LogoLogin/>
-            <p>CADASTRE-SE AGORA MESMO</p>
-            <div className="input-container-register-form">
-                <div className="icon">
+            <Message>CADASTRE-SE AGORA MESMO</Message>
+            <InputContainer>
+                <IconContainer>
                     <FontAwesomeIcon icon={faUser} />
-                </div>
+                </IconContainer>
                 <div className="divider"></div>
-                <input 
+                <Input 
                     type="text" 
-                    className="input" 
                     placeholder="Nome Completo" 
                     value={fullname} 
                     onChange={(e) => setFullname(e.target.value)} 
                 />
-            </div>
-            <div className="input-container-register-form">
-                <div className="icon">
+            </InputContainer>
+            <InputContainer>
+                <IconContainer>
                     <FontAwesomeIcon icon={faUser} />
-                </div>
+                </IconContainer>
                 <div className="divider"></div>
-                <input 
+                <Input 
                     type="text" 
-                    className="input" 
                     placeholder="E-mail" 
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)} 
                 />
-            </div>
-            <div className="input-container-register-form">
-                <div className="icon">
+            </InputContainer>
+            <InputContainer>
+                <IconContainer>
                     <FontAwesomeIcon icon={faLock} />
-                </div>
+                </IconContainer>
                 <div className="divider"></div>
-                <input 
+                <Input 
                     type="password" 
-                    className="input" 
                     placeholder="Senha" 
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)} 
                 />
-            </div>
-            <a href="#"><u>Ao clicar em register você concorda com os termos de usuário</u></a>
-            <div className="button-container">
+            </InputContainer>
+            <Link href="#"><u>Ao clicar em register você concorda com os termos de usuário</u></Link>
+            <ButtonContainer>
                 <Buttons 
                     buttonText="Register" 
                     onClick={handleRegisterClick} 
                 />
                 <Buttons
-                        buttonText="Voltar para login"
-                        onClick={onBackToLoginClick}
+                    buttonText="Voltar para login"
+                    onClick={onBackToLoginClick}
                 />
-            </div>
-        </div>
+            </ButtonContainer>
+        </ContainerRegisterForm>
     );
 }

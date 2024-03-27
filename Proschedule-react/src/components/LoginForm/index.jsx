@@ -62,7 +62,7 @@ const Paragraph = styled.p`
     font-family: inter;
     font-size: 1rem; /* Ajuste para 1rem */
     font-weight: 500;
-    line-height: 1rem; /* Ajuste para 1rem */,
+    line-height: 1rem; /* Ajuste para 1rem */
     text-align: left;
     color: #566A7F;
 

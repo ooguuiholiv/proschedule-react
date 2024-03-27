@@ -1,19 +1,137 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
 import pavel from '../../assets/pavel.jfif';
 import Buttons from '../Buttons/index';
 import LogoLogin from '../LogoLogin';
-import './indexReset.css';
+
+const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 20px;
+    opacity: 0px;
+    background: #E5E7EB;
+    padding: 0.1rem;
+    width: 50rem; /* Alterado para uma unidade de medida mais apropriada */
+    height: 70vh;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        padding: 0;
+    }
+`;
+
+const Container1 = styled.div`
+    width: 50%;
+    height: 100%;
+    border-radius: 20px 0px 0px 20px;
+    overflow: hidden;
+
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+`;
+
+const Image = styled.img`
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
+
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+`;
+
+const Container7 = styled.div`
+    width: 50%;
+    height: auto;
+    gap: 0px;
+    opacity: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        margin: 0;
+    }
+`;
+
+const LogoContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+`;
+
+const InputContainer = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%; 
+    gap: 0px;
+    padding-bottom: 10px;
+    position: relative;
+`;
+
+const IconContainer = styled.div`
+    width: 40px;
+    height: 40px;
+    gap: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #E5E7EB;
+    border-radius: 10px 0px 0px 10px;
+    background-color: #ffffff;
+`;
+
+const Input = styled.input`
+    flex: 1;
+    height: 100%;
+    padding-left: 38px;
+    border: none;
+    border-radius: 0px 10px 10px 0px;
+    color: #E5E7EB;
+    background-color: #ffffff;
+    font-family: Public Sans;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+
+    &::placeholder {
+        color: #E5E7EB;
+    }
+`;
+
+const Divider = styled.div`
+    width: 5px;
+    height: 38px;
+    left: 37px;
+    gap: 0px;
+    border: none;
+`;
+
+const ButtonContainer = styled.div`
+    display: flex;
+    gap: 10px;
+    margin-top: 1rem; 
+`;
 
 export default function ResetPassword() {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [loading, setLoading] = useState(false); // State para indicar o carregamento
+    const [loading, setLoading] = useState(false);
 
     const onSavePasswordClick = async (password) => {
         try {
-            // Aqui você faria a chamada para a API do servidor para salvar a nova senha
             const response = await fetch('https://api/reset-password', {
                 method: 'POST',
                 headers: {
@@ -26,84 +144,73 @@ export default function ResetPassword() {
                 throw new Error('Falha ao salvar a nova senha');
             }
 
-            // Se a requisição for bem-sucedida, você pode fazer qualquer tratamento necessário aqui
-            // Por exemplo, mostrar uma mensagem de sucesso para o usuário
             alert('Nova senha salva com sucesso!');
         } catch (error) {
             console.error('Erro ao salvar nova senha:', error.message);
-            // Lida com o erro, se necessário
-            // Por exemplo, mostrar uma mensagem de erro para o usuário
             alert('Erro ao salvar nova senha. Por favor, tente novamente.');
         }
     };
 
     const handleSavePassword = async () => {
         try {
-            setLoading(true); // Ativa o indicador de carregamento
+            setLoading(true);
 
-            // Verifica se as senhas são iguais
             if (newPassword !== confirmPassword) {
                 throw new Error('As senhas não coincidem');
             }
 
-            // Envia a nova senha para o servidor
             await onSavePasswordClick(newPassword);
 
-            // Limpa os campos de senha após o envio bem-sucedido
             setNewPassword('');
             setConfirmPassword('');
         } catch (error) {
             console.error('Erro ao salvar nova senha:', error.message);
-            // Lida com o erro, se necessário
         } finally {
-            setLoading(false); // Desativa o indicador de carregamento após a conclusão da operação
+            setLoading(false);
         }
     };
 
     return (
-        <div className="container">
-            <div className='container-1'>
-                <img src={pavel} alt="Pavel" />
-            </div>
-            <div className="container-7">
-                <div className='logo'>
-                    <LogoLogin></LogoLogin>
-                </div>
-                <div className="input-container-7">
-                    <div className="icon">
+        <Container>
+            <Container1>
+                <Image src={pavel} alt="Pavel" />
+            </Container1>
+            <Container7>
+                <LogoContainer>
+                    <LogoLogin />
+                </LogoContainer>
+                <InputContainer>
+                    <IconContainer>
                         <FontAwesomeIcon icon={faLock} />
-                    </div>
-                    <div className="divider"></div>
-                    <input
+                    </IconContainer>
+                    <Divider />
+                    <Input
                         type="password"
-                        className="input"
                         placeholder="Nova senha"
                         value={newPassword}
                         onChange={(e) => setNewPassword(e.target.value)}
                     />
-                </div>
-                <div className="input-container-7">
-                    <div className="icon">
+                </InputContainer>
+                <InputContainer>
+                    <IconContainer>
                         <FontAwesomeIcon icon={faLock} />
-                    </div>
-                    <div className="divider"></div>
-                    <input
+                    </IconContainer>
+                    <Divider />
+                    <Input
                         type="password"
-                        className="input"
                         placeholder="Repita a nova senha"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
-                </div>
-                <div className='buttons'>
-                    {/* Desativa o botão se estiver carregando */}
+                </InputContainer>
+                <ButtonContainer>
                     <Buttons 
                         buttonText={loading ? "Aguarde..." : "Salvar nova senha"}
                         onClick={handleSavePassword}
-                        disabled={loading} // Desabilita o botão durante o carregamento
+                        disabled={loading}
                     />
-                </div>
-            </div>
-        </div>
+                </ButtonContainer>
+            </Container7>
+        </Container>
     );
 }

@@ -8,7 +8,7 @@ export const Container = styled.div`
     border-radius: 20px;
     opacity: 0px;
     background: #E5E7EB;
-    padding: 2rem;
+    padding: 0.1rem;
     width: 50rem; /* Alterado para uma unidade de medida mais apropriada */
     height: 70vh;
 
@@ -22,7 +22,7 @@ export const Container = styled.div`
 
 export const Container1 = styled.div`
     width: 50%;
-    margin: 0;
+    height: 100%;
     border-radius: 20px 0px 0px 20px;
     overflow: hidden;
 
@@ -33,10 +33,9 @@ export const Container1 = styled.div`
 
 export const Image = styled.img`
     width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    display: block;
-    overflow: hidden;
+    height: 100%;
+    object-fit: cover;
+
 
     @media screen and (max-width: 768px) {
         display: none;

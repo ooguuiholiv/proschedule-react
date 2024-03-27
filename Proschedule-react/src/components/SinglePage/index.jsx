@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarAlt, faClock, faBell } from '@fortawesome/free-regular-svg-icons';
-import { faCheck, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt, faClock, faBell, faChevronDown, faCheck } from '@fortawesome/free-solid-svg-icons';
+import schedule from '../../assets/schedule.png';
 
 // Estilos globais
 const GlobalStyle = createGlobalStyle`
@@ -12,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     background-color: #1e1e1e;
     color: #f2f2f2;
-    line-height: 1.5; /* Espaçamento entre linhas */
+    line-height: 1.5;
   }
 `;
 
@@ -26,7 +27,7 @@ const SinglePage = () => {
   };
 
   return (
-    <>
+    <div>
       <GlobalStyle />
       <Container>
         <Content>
@@ -35,15 +36,16 @@ const SinglePage = () => {
             <Description>
               O Proschedule é a sua solução completa para simplificar o processo de agendamento de compromissos e reuniões.
             </Description>
-            <Button onClick={handleScrollToCards}>Entrar Agora</Button>
-            <MoreFeatures>Mais funcionalidades abaixo</MoreFeatures> {/* Adicione a frase de mais funcionalidades */}
+            <Link to="/login">
+              <Button>Entrar Agora</Button>
+            </Link>
+            <MoreFeatures>Mais funcionalidades abaixo</MoreFeatures>
             <ScrollArrow icon={faChevronDown} onClick={handleScrollToCards} />
           </Header>
         </Content>
-        <ImageContainer>
-            {/* Adicione uma imagem ou ícone criativo aqui */}
-            <Icon icon={faCalendarAlt} />
-          </ImageContainer>
+        <ImageContainer style={{ backgroundImage: `url(${schedule})` }}>
+          <Icon icon={faCalendarAlt} />
+        </ImageContainer>
       </Container>
       <Features id="features">
         <FeatureCard>
@@ -85,9 +87,10 @@ const SinglePage = () => {
           </WhyChooseDescription>
         </WhyChooseContent>
       </WhyChoose>
-    </>
+    </div>
   );
 };
+
 
 // Estilos dos componentes
 const Container = styled.div`
@@ -96,11 +99,11 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #222; /* Cor de fundo mais escura */
+  background-color: #222; 
 `;
 
 const Content = styled.div`
-  display: flex; /* Para alinhar Title, Description, Button e ImageContainer lado a lado */
+  display: flex; 
   flex-direction: column;
   align-items: left;
   padding: 2rem;
@@ -112,7 +115,7 @@ const Content = styled.div`
 `;
 
 const Header = styled.div`
-  position: relative; /* Para posicionar a seta de rolagem */
+  position: relative; 
 `;
 
 const Title = styled.h1`
@@ -143,20 +146,30 @@ const Button = styled.button`
 
 const ImageContainer = styled.div`
   display: flex;
-  width: 40%;
+  height: 100vh;
+  opacity: 0.7;
+  width: 50%; /* Ajuste para 50% ou outro valor adequado */
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
-
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 500px 0 0 500px;
+  border: 2px solid #222;
+  z-index: 1;
+  position: relative;
+  background: linear-gradient(90deg, #000000, rgba(255, 255, 255, 0.5098039216));
+  inset: 0;
+  
   @media (max-width: 800px) {
-    display: none; /* Esconder o ScrollArrow em telas menores que 1024px */
+    display: none; 
   }
 `;
 
 // Ícones
 const Icon = styled(FontAwesomeIcon)`
-  font-size: 6rem; /* Tamanho do ícone aumentado */
-  color: #f2f2f2; /* Cor do ícone */
+  font-size: 6rem; 
+  color: #f2f2f2; 
 `;
 
 // Recursos principais
@@ -198,11 +211,11 @@ const IconWrapper = styled.div`
 
 const WhyChoose = styled.div`
   margin-top: 3rem;
-  text-align: center; /* Centralizar conteúdo */
+  text-align: center; 
 `;
 
 const WhyChooseContent = styled.div`
-  background-color: #222; /* Cor de fundo escura */
+  background-color: #222; 
   padding: 2rem;
   border-radius: 10px;
 `;
@@ -221,38 +234,38 @@ const CheckIcon = styled(FontAwesomeIcon)`
 `;
 
 const MoreFeatures= styled.div`
-position: absolute;
-bottom: -4.5rem;
-left: 50%;
-transform: translateX(-50%);
-font-size: 1rem;
-color: white;
+  position: absolute;
+  bottom: -4.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  color: white;
 `;
 
 // Adicione a animação de quicar ao ScrollArrow
 const ScrollArrow = styled(FontAwesomeIcon)`
-position: absolute;
-bottom: -7.5rem;
+  position: absolute;
+  bottom: -7.5rem;
+  left: 47%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  animation: bounce 1s infinite alternate; /* Animação de quicar */
 
-left: 47%;
-transform: translateX(-50%);
-font-size: 2rem;
-color: white;
-cursor: pointer;
-animation: bounce 1s infinite alternate; /* Animação de quicar */
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-1rem); /* Altura do quique */
+    }
+  }
 
-@keyframes bounce {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-1rem); /* Altura do quique */
-  }
-}
-@media (min-width: 1024px) {
+  @media (min-width: 1024px) {
     left: 50%;
   }
-@media (max-width: 432px) {
+  @media (max-width: 432px) {
     left: 45%;
   }
 `;

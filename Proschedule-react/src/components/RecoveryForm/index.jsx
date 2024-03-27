@@ -3,7 +3,72 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import Buttons from '../Buttons/index';
 import LogoLogin from '../LogoLogin';
-import './indexRecovery.css';
+import styled from 'styled-components';
+
+const ContainerRecoveryForm = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+`;
+
+const InputContainer = styled.div`
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    gap: 10px;
+    position: relative;
+`;
+
+const IconContainer = styled.div`
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #E5E7EB;
+    border-radius: 10px 0px 0px 10px;
+    background-color: #ffffff;
+`;
+
+const Input = styled.input`
+    flex: 1;
+    height: 38px;
+    margin-left: -0.75rem;
+    border: none;
+    border-radius: 0px 10px 10px 0px;
+    color: #E5E7EB;
+    background-color: #ffffff;
+    font-family: Public Sans;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+
+    &::placeholder {
+        color: #E5E7EB;
+    }
+`;
+
+const Message = styled.p`
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 14.1px;
+    text-align: left;
+    color: #566A7F;
+`;
+
+const ButtonContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+`;
 
 export default function RecoveryForm({ onBackToLoginClick, onRecoverySuccess }) {
     const [email, setEmail] = useState('');
@@ -40,24 +105,23 @@ export default function RecoveryForm({ onBackToLoginClick, onRecoverySuccess }) 
     };
 
     return (
-        <div className="container-recovery-form">
+        <ContainerRecoveryForm>
             <LogoLogin />
             <>
-                <p>INFORME SEU E-MAIL DE USUÁRIO</p>
-                <div className="input-container-recovery-form">
-                    <div className="icon">
+                <Message>INFORME SEU E-MAIL DE USUÁRIO</Message>
+                <InputContainer>
+                    <IconContainer>
                         <FontAwesomeIcon icon={faUser} />
-                    </div>
+                    </IconContainer>
                     <div className="divider"></div>
-                    <input 
+                    <Input 
                         type="text" 
-                        className="input" 
                         placeholder="E-mail" 
                         value={email} 
                         onChange={handleEmailChange} 
                     />
-                </div>
-                <div className='button-container'>
+                </InputContainer>
+                <ButtonContainer>
                     <Buttons
                         buttonText="Recuperar Senha"
                         onClick={handleRecoverPass}
@@ -66,8 +130,8 @@ export default function RecoveryForm({ onBackToLoginClick, onRecoverySuccess }) 
                         buttonText="Voltar para login"
                         onClick={onBackToLoginClick}
                     />
-                </div>
+                </ButtonContainer>
             </>
-        </div>
+        </ContainerRecoveryForm>
     );
 }
