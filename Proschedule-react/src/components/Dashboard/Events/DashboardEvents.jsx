@@ -89,7 +89,7 @@ function DashboardEvents() {
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
               ></textarea>
-              <div>
+              <div className="day-time-info">
                 <ul>
                   <li>
                     <span>SEG</span>

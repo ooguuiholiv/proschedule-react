@@ -81,6 +81,29 @@ body {
   height: 60px;
   border-radius: 50%;
   margin-right: 10px;
+  cursor: pointer;
+}
+.profile-menu {
+  position: absolute;
+  top: calc(100% + 10px); /* Posiciona o menu abaixo da imagem do perfil */
+  left: 0;
+  background-color: #303030;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-menu a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.profile-menu a:hover {
+  background-color: #444;
 }
 
 .occupation {
@@ -127,6 +150,9 @@ body {
     border-bottom-right-radius: 0px;
     flex-direction: row-reverse;
     overflow: hidden;
+  }
+  .perfil {
+    display: none;
   }
   .menu-icon {
     display: block;
