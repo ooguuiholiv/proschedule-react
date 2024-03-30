@@ -1,0 +1,118 @@
+{
+  "meetingsScheduled": [
+    {
+      "name": "Brainstorming",
+      "duration": "1 hora",
+      "requestedBy": "João Silva",
+      "dateRequested": "2024-03-20"
+    },
+    {
+      "name": "Apresentação de projeto",
+      "duration": "2 horas",
+      "requestedBy": "Maria Santos",
+      "dateRequested": "2024-03-25"
+    },
+    {
+      "name": "Apresentação de projeto",
+      "duration": "2 horas",
+      "requestedBy": "Maria Santos",
+      "dateRequested": "2024-03-25"
+    }
+  ],
+  "appointments": [
+    { "status": "Realizado", "title": "Consulta médica", "date": "2024-03-10" },
+    {
+      "status": "Cancelado",
+      "title": "Reunião de equipe",
+      "date": "2024-03-12"
+    },
+    {
+      "status": "Adiado",
+      "title": "Apresentação de vendas",
+      "date": "2024-03-15"
+    }
+  ],
+
+  "eventsSchedule": [
+    {
+      "eventId": 4,
+      "name": "Ana Silva",
+      "scheduleEvent": "Consulta médica",
+      "day": "05/04/2024",
+      "hours": "10:30",
+      "status": "Confirmed"
+    },
+    {
+      "eventId": 5,
+      "name": "John Doe",
+      "scheduleEvent": "Entrevista de emprego",
+      "day": "15/04/2024",
+      "hours": "09:00",
+      "status": "PendingApproval"
+    },
+    {
+      "eventId": 6,
+      "name": "Maria Santos",
+      "scheduleEvent": "Aula de dança",
+      "day": "10/04/2024",
+      "hours": "18:00",
+      "status": "PendingApproval"
+    },
+    {
+      "eventId": 7,
+      "name": "Carlos Oliveira",
+      "scheduleEvent": "Treinamento de equipe",
+      "day": "12/04/2024",
+      "hours": "14:30",
+      "status": "PendingApproval"
+    },
+    {
+      "eventId": 8,
+      "name": "Juliana Lima",
+      "scheduleEvent": "Reunião de negócios",
+      "day": "08/04/2024",
+      "hours": "16:00",
+      "status": "Confirmed"
+    },
+    {
+      "eventId": 9,
+      "name": "Paulo Costa",
+      "scheduleEvent": "Apresentação do projeto",
+      "day": "25/04/2024",
+      "hours": "11:00",
+      "status": "PendingApproval"
+    },
+    {
+      "eventId": 10,
+      "name": "Amanda Souza",
+      "scheduleEvent": "Palestra sobre tecnologia",
+      "day": "18/04/2024",
+      "hours": "15:30",
+      "status": "Confirmed"
+    },
+    {
+      "eventId": 11,
+      "name": "Lucas Oliveira",
+      "scheduleEvent": "Consulta odontológica",
+      "day": "22/03/2024",
+      "hours": "08:45",
+      "status": "PendingApproval"
+    },
+    {
+      "eventId": 12,
+      "name": "Fernanda Rodrigues",
+      "scheduleEvent": "Aula de yoga",
+      "day": "09/03/2024",
+      "hours": "17:00",
+      "status": "PendingApproval"
+    },
+    {
+      "eventId": 13,
+      "name": "Gustavo Santos",
+      "scheduleEvent": "Sessão de terapia",
+      "day": "20/04/2024",
+      "hours": "13:00",
+      "status": "Confirmed"
+    }
+  ]
+}

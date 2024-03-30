@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
-
 export const Content = styled.div`
-  width: 100%;
+  width: 90%;
+  margin-left: 4rem;
   margin-top: 5rem;
-  border-radius: 0.3125rem;
+  border-radius: 0.5rem;
   background-color: #363636d8;
   color: white;
 
@@ -40,14 +39,16 @@ export const Content = styled.div`
   }
 
   table {
+    overflow-y: scroll;
     max-width: 100rem;
     border-collapse: collapse;
-
+    width: 100%;
     margin-top: 20px;
+    margin: 0 auto; /* Centraliza a tabela horizontalmente */
 
     th {
-      max-width: 100%; /* Define a largura máxima como 100% */
-      width: 30rem; /* Define a largura automática para acomodar o conteúdo */
+      max-width: 100%;
+      width: 30rem;
       overflow-x: auto;
       padding: 8px 1px; /* Reduz o preenchimento dos elementos th e td */
       margin: 0;
@@ -64,13 +65,18 @@ export const Content = styled.div`
       border-bottom: 1px solid #ddd;
     }
   }
+
+  .button-confirm,
+  .button-denied {
+    justify-content: center;
+  }
   .button-confirm {
     color: #4caf50;
     background-color: #363636d8;
     border: solid 0px #363636d8;
     border-radius: 10px;
     padding: 10px;
-    margin-right: 10px;
+
     cursor: pointer;
     transition: 0.5s;
   }
@@ -84,9 +90,10 @@ export const Content = styled.div`
     border: solid 0px #363636d8;
     border-radius: 10px;
     padding: 10px;
-    margin-right: 20px;
+    margin-top: 0.5rem;
     cursor: pointer;
     transition: 0.5s;
+    width: 5rem;
   }
   .button-denied:hover {
     background-color: #ff0000;
@@ -124,7 +131,9 @@ export const Content = styled.div`
     display: flex;
     justify-content: center;
   }
-
+  #events {
+    display: contents;
+  }
   @media screen and (max-width: 1111px) {
     table th,
     table td {
@@ -134,6 +143,12 @@ export const Content = styled.div`
     .pagination-button {
       padding: 6px 8px; /* Reduz o padding dos botões de paginação */
       font-size: 12px; /* Reduz o tamanho da fonte dos botões de paginação */
+    }
+    @media screen and (max-width: 1050px) {
+      table th,
+      table td {
+        padding: 0.5rem 2rem; /* Reduz o espaçamento entre as células em telas menores */
+      }
     }
   }
   @media screen and (max-width: 803px) {
@@ -147,6 +162,57 @@ export const Content = styled.div`
         max-width: 10%;
         width: 1rem;
       }
+    }
+  }
+  @media screen and (max-width: 762px) {
+    margin-left: 0rem;
+    table th,
+    table td {
+      padding: 0.5rem 1rem; /* Reduz o espaçamento entre as células em telas menores */
+    }
+  }
+  @media screen and (max-width: 576px) {
+    table th,
+    table td {
+      padding: 0.5rem;
+      font-size: 12px;
+    }
+
+    .content-menu {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .content-menu button {
+      padding: 0.3rem 0.5rem;
+      font-size: 12px;
+    }
+
+    #eventsPerPage {
+      font-size: 12px;
+      padding: 0.3rem 0.5rem;
+    }
+  }
+  @media screen and (max-width: 350px) {
+    table th,
+    table td {
+      padding: 0.3rem;
+      font-size: 10px;
+    }
+
+    .content-menu {
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .content-menu button {
+      padding: 0.2rem 0.4rem;
+      font-size: 10px;
+    }
+
+    #eventsPerPage {
+      font-size: 10px;
+      padding: 0.2rem 0.4rem;
     }
   }
 `;

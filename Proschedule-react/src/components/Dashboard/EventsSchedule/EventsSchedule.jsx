@@ -1,47 +1,36 @@
 import React, { useState, useEffect } from "react";
 import Header from "../designerBody/Header.jsx";
-import { Container, Content } from "./styleEventsSchedule"; // Importe os estilos do arquivo separado
+import { Content } from "./styleEventsSchedule";
 
 export const EventsPage = () => {
-  const [allEvents, setAllEvents] = useState([
-    {
-      name: "Erick venites",
-      scheduleEvent: "Reunião 45min",
-      day: "30/03/2024",
-      hours: "14:00",
-      status: "Confirmed",
-    },
-    {
-      name: "Erick venites",
-      scheduleEvent: "Reunião 45min",
-      day: "30/03/2024",
-      hours: "14:00",
-      status: "PendingApproval",
-    },
-    {
-      name: "Erick venites",
-      scheduleEvent: "Reunião 45min",
-      day: "20/03/2024",
-      hours: "14:00",
-      status: "PendingApproval",
-    },
-  ]);
-
-  const [events, setEvents] = useState(allEvents);
+  const [allEvents, setAllEvents] = useState([]);
+  const [events, setEvents] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [eventsPerPage, setEventsPerPage] = useState(10);
+  const [activeTab, setActiveTab] = useState("Confirmed");
 
   useEffect(() => {
-    checkPastEvents();
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/eventsSchedule");
+        if (!response.ok) {
+          throw new Error("Failed to fetch events");
+        }
+        const data = await response.json();
+        console.log("events", data);
+        setAllEvents(data);
+        filterConfirmedEvents(data); // Inicializar eventos filtrados por "Confirmed"
+        checkPastEvents(data); // Chamar a função checkPastEvents com os dados recuperados
+      } catch (error) {
+        console.log("error fetching events", error);
+      }
+    };
+    fetchEvents();
   }, []);
 
   useEffect(() => {
     setCurrentPage(1);
   }, [events]);
-
-  useEffect(() => {
-    filterConfirmedEvents(); // Esta linha foi adicionada
-  }, []); // Executar apenas uma vez quando o componente é montado
 
   const renderEvents = (filteredEvents) => {
     const startIndex = (currentPage - 1) * eventsPerPage;
@@ -92,7 +81,7 @@ export const EventsPage = () => {
       event === eventToConfirm ? { ...event, status: "Confirmed" } : event
     );
     setAllEvents(updatedEvents);
-    setEvents(updatedEvents.filter((event) => event.status === "Confirmed"));
+    filterConfirmedEvents(updatedEvents); // Atualizar eventos confirmados
   };
 
   const denyEvent = (eventToDeny) => {
@@ -100,38 +89,67 @@ export const EventsPage = () => {
       event === eventToDeny ? { ...event, status: "Denied" } : event
     );
     setAllEvents(updatedEvents);
-    setEvents(
-      updatedEvents.filter(
-        (event) =>
-          event.status === "PendingApproval" ||
-          event.status === "Past" ||
-          event.status === "Denied"
-      )
-    );
+
+    if (activeTab === "Past") {
+      // Se a aba ativa for "Past", filtrar eventos confirmados e negados
+      setEvents(
+        updatedEvents.filter(
+          (event) =>
+            event.status === "Confirmed" ||
+            event.status === "Denied" ||
+            event.status === "Past"
+        )
+      );
+    } else {
+      // Caso contrário, filtrar apenas eventos confirmados
+      filterConfirmedEvents(updatedEvents);
+    }
   };
 
-  const filterConfirmedEvents = () => {
-    setEvents(allEvents.filter((event) => event.status === "Confirmed"));
+  const filterConfirmedEvents = (eventsData) => {
+    const filteredEvents = eventsData.filter(
+      (event) => event.status === "Confirmed"
+    );
+    setEvents(filteredEvents);
+    setActiveTab("Confirmed");
   };
 
   const filterPendingApprovalEvents = () => {
-    setEvents(allEvents.filter((event) => event.status === "PendingApproval"));
+    const filteredEvents = allEvents.filter(
+      (event) => event.status === "PendingApproval"
+    );
+    setEvents(filteredEvents);
+    setActiveTab("PendingApproval");
   };
 
   const filterPastEvents = () => {
-    setEvents(
-      allEvents.filter(
-        (event) => event.status === "Past" || event.status === "Denied"
-      )
+    const filteredEvents = allEvents.filter(
+      (event) =>
+        event.status === "Past" ||
+        event.status === "Denied" ||
+        event.status === "Confirmed"
     );
+    setEvents(filteredEvents);
+    setActiveTab("Past");
   };
 
-  const checkPastEvents = () => {
+  const checkPastEvents = (eventsData) => {
     const now = new Date();
-    const updatedEvents = allEvents.map((event) => {
+    const updatedEvents = eventsData.map((event) => {
       const [day, month, year] = event.day.split("/");
       const [hours, minutes] = event.hours.split(":");
-      const eventDateTime = new Date(year, month - 1, day, hours, minutes);
+      const dayInt = parseInt(day);
+      const monthInt = parseInt(month) - 1;
+      const yearInt = parseInt(year);
+      const hoursInt = parseInt(hours);
+      const minutesInt = parseInt(minutes);
+      const eventDateTime = new Date(
+        yearInt,
+        monthInt,
+        dayInt,
+        hoursInt,
+        minutesInt
+      );
       if (
         eventDateTime < now &&
         event.status !== "Past" &&
@@ -142,6 +160,18 @@ export const EventsPage = () => {
       return event;
     });
     setAllEvents(updatedEvents);
+
+    if (activeTab === "Past") {
+      // Se a aba ativa for "Past", filtrar eventos confirmados e negados
+      setEvents(
+        updatedEvents.filter(
+          (event) =>
+            event.status === "Confirmed" ||
+            event.status === "Denied" ||
+            event.status === "Past"
+        )
+      );
+    }
   };
 
   const totalPages = Math.ceil(events.length / eventsPerPage);
@@ -160,41 +190,43 @@ export const EventsPage = () => {
 
   return (
     <>
-      <Container>
-        <Header />
-        <Content>
-          <div className="content-menu">
-            <button onClick={filterConfirmedEvents}>Confirmed</button>
-            <button onClick={filterPendingApprovalEvents}>
-              Pending approval
-            </button>
-            <button onClick={filterPastEvents}>Past</button>
-          </div>
+      <Header />
 
-          <table>
-            <div className="thead">
+      <Content>
+        <div className="content-menu">
+          <button onClick={filterConfirmedEvents}>Confirmed</button>
+          <button onClick={filterPendingApprovalEvents}>
+            Pending approval
+          </button>
+          <button onClick={filterPastEvents}>Past</button>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
               <th>Nome</th>
               <th>Evento</th>
               <th>Dia</th>
               <th>Hora</th>
               <th>Status</th>
-            </div>
-            <div id="events">{renderEvents(events)}</div>
-            <select
-              id="eventsPerPage"
-              value={eventsPerPage}
-              onChange={(e) => setEventsPerPage(parseInt(e.target.value))}
-            >
-              <option value={5}>5</option>
-              <option value={10}>10</option>
-              <option value={15}>15</option>
-              <option value={20}>20</option>
-            </select>
-          </table>
+            </tr>
+          </thead>
+          <tbody id="events">{renderEvents(events)}</tbody>
+        </table>
 
-          <div id="pagination">{paginationButtons}</div>
-        </Content>
-      </Container>
+        <select
+          id="eventsPerPage"
+          value={eventsPerPage}
+          onChange={(e) => setEventsPerPage(parseInt(e.target.value))}
+        >
+          <option value={5}>5</option>
+          <option value={10}>10</option>
+          <option value={15}>15</option>
+          <option value={20}>20</option>
+        </select>
+
+        <div id="pagination">{paginationButtons}</div>
+      </Content>
     </>
   );
 };
