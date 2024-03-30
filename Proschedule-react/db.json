@@ -1,24 +1,4 @@
 {
-  "meetingsScheduled": [
-    {
-      "name": "Brainstorming",
-      "duration": "1 hora",
-      "requestedBy": "João Silva",
-      "dateRequested": "2024-03-20"
-    },
-    {
-      "name": "Apresentação de projeto",
-      "duration": "2 horas",
-      "requestedBy": "Maria Santos",
-      "dateRequested": "2024-03-25"
-    },
-    {
-      "name": "Apresentação de projeto",
-      "duration": "2 horas",
-      "requestedBy": "Maria Santos",
-      "dateRequested": "2024-03-25"
-    }
-  ],
   "appointments": [
     { "status": "Realizado", "title": "Consulta médica", "date": "2024-03-10" },
     {
