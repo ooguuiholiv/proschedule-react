@@ -7,11 +7,13 @@ import LoginForm from "./components/LoginForm/index.jsx";
 import RecoveryForm from "./components/RecoveryForm/index.jsx";
 import VerifyEmail from "./components/VerifyEmail/index.jsx";
 import ResetPassword from "./components/ResetPassword/index.jsx";
+import Register from "./components/Register/index.jsx";
 const AppRouter = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<SinglePage />} />
+        <Route path="/auth/register" element={<Register />} />
         <Route path="/auth/login" element={<LoginForm />} />
         <Route path="/auth/recovery" element={<RecoveryForm />} />
         <Route path="/auth/verify" element={<VerifyEmail />} />
