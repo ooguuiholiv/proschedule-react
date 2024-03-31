@@ -22,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const ContainerRecoveryForm = styled.div`
+const ContainerRecoveryForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -185,7 +185,7 @@ export default function RecoveryForm({ onBackToLoginClick, onRecoverySuccess }) 
             <Image src={pavel} alt="Pavel" />
           </Container1>
           <Container2>
-            <ContainerRecoveryForm>
+            <ContainerRecoveryForm onSubmit={handleRecoverPass}>
               <LogoLogin />
                 <Message>INFORME SEU E-MAIL DE USUÁRIO</Message>
                 <InputContainer>
@@ -198,18 +198,19 @@ export default function RecoveryForm({ onBackToLoginClick, onRecoverySuccess }) 
                     placeholder="E-mail"
                     value={email}
                     onChange={handleEmailChange}
+                    id="email"
+                    name="email"
                   />
                 </InputContainer>
                 <ButtonContainer>
                   <Buttons
                     buttonText="Recuperar Senha"
-                    onClick={handleRecoverPass}
+                    type="submit"
                   />
-                  
                 </ButtonContainer>
             </ContainerRecoveryForm>
           </Container2>
         </Container>
       </>
     );
-}
+              }
