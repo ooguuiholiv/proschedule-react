@@ -21,7 +21,8 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5;
   }
 `;
-const ContainerRegisterForm = styled.div`
+
+const ContainerRegisterForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,6 +96,7 @@ const ButtonContainer = styled.div`
   justify-content: center;
   width: 100%;
 `;
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -151,21 +153,24 @@ const Container2 = styled.div`
     margin: 0;
   }
 `;
+
 export default function Register({ onRegisterClick, onBackToLoginClick }) {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
 
-  const handleRegisterClick = async () => {
+  const handleRegisterClick = async (e) => {
+    e.preventDefault();
+
     const userData = {
       fullname,
       email,
       password,
+      phone,
     };
 
     try {
-      // Requisição POST para o endpoint do servidor
       const response = await fetch("http://localhost:3000/auth/register", {
         method: "POST",
         headers: {
@@ -176,10 +181,10 @@ export default function Register({ onRegisterClick, onBackToLoginClick }) {
 
       if (response.ok) {
         console.log("Usuário cadastrado com sucesso!");
-        // Limpa os campos de input após o registro bem-sucedido
         setFullname("");
         setEmail("");
         setPassword("");
+        setPhone("");
       } else {
         console.error("Erro ao cadastrar usuário:", response.statusText);
       }
@@ -187,7 +192,6 @@ export default function Register({ onRegisterClick, onBackToLoginClick }) {
       console.error("Erro ao cadastrar usuário:", error);
     }
 
-    // Chame a função recebida como prop
     onRegisterClick();
   };
 
@@ -199,7 +203,7 @@ export default function Register({ onRegisterClick, onBackToLoginClick }) {
           <Image src={pavel} alt="Pavel" />
         </Container1>
         <Container2>
-          <ContainerRegisterForm>
+          <ContainerRegisterForm onSubmit={handleRegisterClick}>
             <LogoLogin />
             <Message>CADASTRE-SE AGORA MESMO</Message>
             <InputContainer>
@@ -212,6 +216,8 @@ export default function Register({ onRegisterClick, onBackToLoginClick }) {
                 placeholder="Nome Completo"
                 value={fullname}
                 onChange={(e) => setFullname(e.target.value)}
+                id="fullname"
+                name="fullname"
               />
             </InputContainer>
             <InputContainer>
@@ -224,6 +230,8 @@ export default function Register({ onRegisterClick, onBackToLoginClick }) {
                 placeholder="Phone"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+                id="phone"
+                name="phone"
               />
             </InputContainer>
             <InputContainer>
@@ -236,6 +244,8 @@ export default function Register({ onRegisterClick, onBackToLoginClick }) {
                 placeholder="E-mail"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                id="email"
+                name="email"
               />
             </InputContainer>
             <InputContainer>
@@ -248,6 +258,8 @@ export default function Register({ onRegisterClick, onBackToLoginClick }) {
                 placeholder="Senha"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                id="password"
+                name="password"
               />
             </InputContainer>
             <Link href="#">
@@ -256,7 +268,7 @@ export default function Register({ onRegisterClick, onBackToLoginClick }) {
               </u>
             </Link>
             <ButtonContainer>
-              <Buttons buttonText="Register" onClick={handleRegisterClick} />
+              <Buttons buttonText="Register" type="submit" />
             </ButtonContainer>
           </ContainerRegisterForm>
         </Container2>
