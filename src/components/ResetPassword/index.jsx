@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import styled, { createGlobalStyle } from "styled-components";
@@ -63,7 +63,7 @@ const Image = styled.img`
   }
 `;
 
-const Container7 = styled.div`
+const Container7 = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,14 +77,6 @@ const Container7 = styled.div`
     padding: 1rem;
   }
 `;
-
-/* const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-`; */
 
 const InputContainer = styled.div`
   display: flex;
@@ -193,8 +185,8 @@ export default function ResetPassword() {
         <Container1>
           <Image src={pavel} alt="Pavel" />
         </Container1>
-        <Container7>
-            <LogoLogin />
+        <Container7 onSubmit={handleSavePassword}>
+          <LogoLogin />
           <InputContainer>
             <IconContainer>
               <FontAwesomeIcon icon={faLock} />
@@ -205,6 +197,8 @@ export default function ResetPassword() {
               placeholder="Nova senha"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
+              id="newPassword"
+              name="newPassword"
             />
           </InputContainer>
           <InputContainer>
@@ -217,17 +211,19 @@ export default function ResetPassword() {
               placeholder="Repita a nova senha"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              id="confirmPassword"
+              name="confirmPassword"
             />
           </InputContainer>
           <ButtonContainer>
             <Buttons
               buttonText={loading ? "Aguarde..." : "Salvar nova senha"}
-              onClick={handleSavePassword}
               disabled={loading}
+              type="submit"
             />
           </ButtonContainer>
         </Container7>
       </Container>
     </>
   );
-}
+    }
