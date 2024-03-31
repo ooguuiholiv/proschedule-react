@@ -1,10 +1,10 @@
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import Buttons from "../Buttons/index";
 import LogoLogin from "../LogoLogin";
 import styled, { createGlobalStyle } from "styled-components";
 import pavel from "../../assets/pavel.jfif";
-
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -29,7 +29,7 @@ const ContainerLoginForm = styled.div`
   gap: 1rem;
   max-width: 400px;
   padding: 2rem;
-  width: 90%; /* Ajuste para 90% da largura */
+  width: 90%;
   margin: 0 auto;
 
   @media screen and (max-width: 768px) {
@@ -41,12 +41,12 @@ const InputContainerLoginForm = styled.div`
   display: flex;
   align-items: stretch;
   width: 100%;
-  gap: 1rem; /* Ajuste para 1rem */
+  gap: 1rem;
 `;
 
 const Icon = styled.div`
-  width: 15%; /* Ajuste para 15% */
-  max-width: 40px; /* Ajuste para 40px */
+  width: 15%;
+  max-width: 40px;
   height: 38px;
   display: flex;
   align-items: center;
@@ -65,9 +65,9 @@ const Input = styled.input`
   color: #e5e7eb;
   background-color: #ffffff;
   font-family: Public Sans;
-  font-size: 1rem; /* Ajuste para 1rem */
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5rem; /* Ajuste para 1.5rem */
+  line-height: 1.5rem;
   text-align: left;
 
   &::placeholder {
@@ -77,9 +77,9 @@ const Input = styled.input`
 
 const Paragraph = styled.p`
   font-family: inter;
-  font-size: 1rem; /* Ajuste para 1rem */
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 1rem; /* Ajuste para 1rem */
+  line-height: 1rem;
   text-align: left;
   color: #566a7f;
 
@@ -90,9 +90,9 @@ const Paragraph = styled.p`
 
 const OverPass = styled.div`
   font-family: inter;
-  font-size: 1rem; /* Ajuste para 1rem */
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5rem; /* Ajuste para 1.5rem */
+  line-height: 1.5rem;
   text-align: left;
   color: #566a7f;
   cursor: pointer;
@@ -114,7 +114,7 @@ const Container = styled.div`
   opacity: 0px;
   background: #e5e7eb;
   padding: 0.1rem;
-  width: 58.56vw; /* Alterado para uma unidade de medida mais apropriada */
+  width: 58.56vw;
   height: 70vh;
 
   @media screen and (max-width: 768px) {
@@ -163,8 +163,29 @@ const Container2 = styled.div`
 `;
 
 export default function LoginForm({ onForgotPasswordClick, onRegisterClick }) {
-  const handleButtonClick = () => {
-    console.log("Botão clicado");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault(); // Evita o comportamento padrão de submit do formulário
+    try {
+      const response = await fetch("url_do_seu_endpoint_de_login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+      if (response.ok) {
+        // Lógica para lidar com o sucesso do login
+        console.log("Login bem-sucedido!");
+      } else {
+        // Lógica para lidar com falhas no login
+        console.error("Falha no login");
+      }
+    } catch (error) {
+      console.error("Erro ao tentar fazer login:", error);
+    }
   };
 
   return (
@@ -178,25 +199,41 @@ export default function LoginForm({ onForgotPasswordClick, onRegisterClick }) {
           <ContainerLoginForm>
             <LogoLogin />
             <Paragraph>INFORME SUAS CREDENCIAIS DE ACESSO</Paragraph>
-            <InputContainerLoginForm>
-              <Icon>
-                <FontAwesomeIcon icon={faUser} />
-              </Icon>
-              <Input type="text" placeholder="Usuário/ E-mail" />
-            </InputContainerLoginForm>
-            <InputContainerLoginForm>
-              <Icon>
-                <FontAwesomeIcon icon={faLock} />
-              </Icon>
-              <Input type="password" placeholder="Senha" />
-            </InputContainerLoginForm>
-            <OverPass onClick={onForgotPasswordClick}>
-              <u>Esqueci minha senha</u>
-            </OverPass>
-            <ButtonContainer>
-              <Buttons buttonText="Login" onClick={handleButtonClick} />
-              <Buttons buttonText="Register" onClick={onRegisterClick} />
-            </ButtonContainer>
+            <form onSubmit={handleLogin}>
+              <InputContainerLoginForm>
+                <Icon>
+                  <FontAwesomeIcon icon={faUser} />
+                </Icon>
+                <Input
+                  type="text"
+                  placeholder="Usuário/ E-mail"
+                  id="username"
+                  name="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </InputContainerLoginForm>
+              <InputContainerLoginForm>
+                <Icon>
+                  <FontAwesomeIcon icon={faLock} />
+                </Icon>
+                <Input
+                  type="password"
+                  placeholder="Senha"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </InputContainerLoginForm>
+              <OverPass onClick={onForgotPasswordClick}>
+                <u>Esqueci minha senha</u>
+              </OverPass>
+              <ButtonContainer>
+                <Buttons buttonText="Login" type="submit" onClick={handleLogin} />
+                <Buttons buttonText="Register" onClick={onRegisterClick} />
+              </ButtonContainer>
+            </form>
           </ContainerLoginForm>
         </Container2>
       </Container>
