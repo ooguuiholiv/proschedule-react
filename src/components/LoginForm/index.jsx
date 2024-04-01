@@ -83,7 +83,7 @@ const Paragraph = styled.p`
   font-size: 1rem; /* Ajuste para 1rem */
   font-weight: 500;
   line-height: 1rem; /* Ajuste para 1rem */
-  text-align: left;
+  text-align: center;
   color: #566a7f;
 
   @media screen and (max-width: 768px) {

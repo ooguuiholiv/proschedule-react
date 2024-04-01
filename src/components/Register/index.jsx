@@ -42,7 +42,7 @@ const InputContainer = styled.div`
 
 const IconContainer = styled.div`
   width: 40px;
-  height: 40px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,8 +67,8 @@ const Input = styled.input`
   padding: 2px;
 
   &::placeholder {
-    color: rgba(54, 54, 54, 0.7);
-  }
+        color: #E5E7EB;
+    }
 `;
 
 const Message = styled.p`

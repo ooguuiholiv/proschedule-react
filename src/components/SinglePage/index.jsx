@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: #1e1e1e;
     color: #f2f2f2;
     line-height: 1.5;
+    overflow-x: hidden; /* Impede a barra de rolagem horizontal */
   }
 `;
 
@@ -32,6 +33,7 @@ const SinglePage = () => {
       <Container>
         <Content>
           <Header>
+            <Icon icon={faCalendarAlt} />
             <Title>Proschedule</Title>
             <Description>
               O Proschedule é a sua solução completa para simplificar o processo de agendamento de compromissos e reuniões.
@@ -44,7 +46,7 @@ const SinglePage = () => {
           </Header>
         </Content>
         <ImageContainer style={{ backgroundImage: `url(${schedule})` }}>
-          <Icon icon={faCalendarAlt} />
+          
         </ImageContainer>
       </Container>
       <Features id="features">
@@ -91,12 +93,11 @@ const SinglePage = () => {
   );
 };
 
-
 // Estilos dos componentes
 const Container = styled.div`
   display: flex;
-  width: 100vw;
   justify-content: center;
+  width: auto;
   align-items: center;
   min-height: 100vh;
   background-color: #222; 
@@ -104,34 +105,44 @@ const Container = styled.div`
 
 const Content = styled.div`
   display: flex; 
+  justify-content: center;
   flex-direction: column;
-  align-items: left;
+  width: 70%;
+  height: 100vh;
+  align-items: center; /* Alterado para 'center' */
   padding: 2rem;
   text-align: center;
-
-  @media (max-width: 1024px) {
-    width: 100%;
-  }
+  overflow: hidden;
+  max-width: 800px; /* Adicionado um valor máximo */
 `;
 
 const Header = styled.div`
-  position: relative; 
+  position: relative;
 `;
 
 const Title = styled.h1`
   font-size: 3rem;
   margin-bottom: 1rem;
+  width: auto;
 `;
 
 const Description = styled.p`
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: 2rem;
+  width: auto;
+
+  @media (max-width: 800px) {
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const Button = styled.button`
   padding: 1rem 2rem;
   font-size: 1rem;
   background-color: #363636;
+  justify-content: center;
+  align-items: center;
   color: #f2f2f2;
   border: none;
   margin-bottom: 1rem;
@@ -147,22 +158,23 @@ const Button = styled.button`
 const ImageContainer = styled.div`
   display: flex;
   height: 100vh;
-  opacity: 0.7;
-  width: 50%; /* Ajuste para 50% ou outro valor adequado */
+  width: 30%;
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: 500px 0 0 500px;
+  border-radius: 20% 10% 20% 20%;
+  overflow: hidden;
+  
   border: 2px solid #222;
   z-index: 1;
   position: relative;
   background: linear-gradient(90deg, #000000, rgba(255, 255, 255, 0.5098039216));
   inset: 0;
-  
+
   @media (max-width: 800px) {
-    display: none; 
+    display: none;
   }
 `;
 
@@ -179,6 +191,12 @@ const Features = styled.div`
   justify-content: space-around;
   margin-top: 3rem;
   gap: 1rem;
+  padding: 0 2rem; /* Adicionado espaçamento horizontal */
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const FeatureCard = styled.div`
@@ -197,6 +215,7 @@ const FeatureTitle = styled.h2`
 
 const FeatureDescription = styled.p`
   font-size: 1rem;
+  width: auto;
 `;
 
 const IconWrapper = styled.div`
@@ -211,11 +230,11 @@ const IconWrapper = styled.div`
 
 const WhyChoose = styled.div`
   margin-top: 3rem;
-  text-align: center; 
+  text-align: center;
 `;
 
 const WhyChooseContent = styled.div`
-  background-color: #222; 
+  background-color: #222;
   padding: 2rem;
   border-radius: 10px;
 `;
@@ -226,6 +245,8 @@ const WhyChooseTitle = styled.h2`
 
 const WhyChooseDescription = styled.p`
   font-size: 1.2rem;
+  width: auto;
+
 `;
 
 const CheckIcon = styled(FontAwesomeIcon)`
@@ -233,12 +254,12 @@ const CheckIcon = styled(FontAwesomeIcon)`
   color: green;
 `;
 
-const MoreFeatures= styled.div`
+const MoreFeatures = styled.div`
   position: absolute;
   bottom: -4.5rem;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 1rem;
+  font-size: 0.75rem;
   color: white;
 `;
 
@@ -246,7 +267,7 @@ const MoreFeatures= styled.div`
 const ScrollArrow = styled(FontAwesomeIcon)`
   position: absolute;
   bottom: -7.5rem;
-  left: 47%;
+  left: 48%;
   transform: translateX(-50%);
   font-size: 2rem;
   color: white;
@@ -263,12 +284,15 @@ const ScrollArrow = styled(FontAwesomeIcon)`
   }
 
   @media (min-width: 1024px) {
-    left: 50%;
+    left: 47%;
   }
   @media (max-width: 432px) {
-    left: 45%;
+    left: 44%;
+  }
+
+  @media (max-width: 400px) {
+    display: none;
   }
 `;
 
 export default SinglePage;
-

@@ -43,7 +43,7 @@ const InputContainer = styled.div`
 
 const IconContainer = styled.div`
     width: 40px;
-    height: 40px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
