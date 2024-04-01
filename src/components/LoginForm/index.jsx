@@ -4,7 +4,9 @@ import Buttons from "../Buttons/index";
 import LogoLogin from "../LogoLogin";
 import styled, { createGlobalStyle } from "styled-components";
 import pavel from "../../assets/pavel.jfif";
-
+import { useState } from "react";
+import { Link, redirect } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -62,7 +64,8 @@ const Input = styled.input`
   border: none;
   margin-left: -0.75rem;
   border-radius: 0px 10px 10px 0px;
-  color: #e5e7eb;
+  color: #363636;
+  padding: 10px;
   background-color: #ffffff;
   font-family: Public Sans;
   font-size: 1rem; /* Ajuste para 1rem */
@@ -162,10 +165,57 @@ const Container2 = styled.div`
   }
 `;
 
-export default function LoginForm({ onForgotPasswordClick, onRegisterClick }) {
-  const handleButtonClick = () => {
-    console.log("Botão clicado");
+export default function LoginForm() {
+  
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+  })
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+   await  fetch("http://localhost:7777/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Ocorreu um erro ao enviar o formulário.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Resposta do servidor:", data);
+        // Faça algo com a resposta do servidor, se necessário
+        const authToken = data.bearerToken;
+        window.localStorage.setItem("token", authToken);
+        Cookies.set("token", authToken, { expires: 7 });
+        window.location.href = '/dashboard'
+      })
+      .catch((error) => {
+        console.error("Erro:", error);
+        // Trate o erro de acordo com sua lógica de aplicação
+      });
+  };
+  
+const redirecionar = () => {
+  window.location.href = '/auth/register'
+}
+
+const red_recovery = () => {
+  window.location.href = '/auth/recovery'
+}
+  
 
   return (
     <>
@@ -182,20 +232,20 @@ export default function LoginForm({ onForgotPasswordClick, onRegisterClick }) {
               <Icon>
                 <FontAwesomeIcon icon={faUser} />
               </Icon>
-              <Input type="text" placeholder="Usuário/ E-mail" />
+              <Input type="text" placeholder="Usuário/ E-mail" id="email" name="email" onChange={handleChange} value={formData.email}/>
             </InputContainerLoginForm>
             <InputContainerLoginForm>
               <Icon>
                 <FontAwesomeIcon icon={faLock} />
               </Icon>
-              <Input type="password" placeholder="Senha" />
+              <Input type="password" placeholder="Senha" id="password" name="password" value={formData.password} onChange={handleChange} />
             </InputContainerLoginForm>
-            <OverPass onClick={onForgotPasswordClick}>
+            <OverPass onClick={red_recovery}>
               <u>Esqueci minha senha</u>
             </OverPass>
             <ButtonContainer>
-              <Buttons buttonText="Login" onClick={handleButtonClick} />
-              <Buttons buttonText="Register" onClick={onRegisterClick} />
+              <Buttons buttonText="Login" onClick={handleSubmit} />
+              <Buttons buttonText="Register" onClick={redirecionar} />
             </ButtonContainer>
           </ContainerLoginForm>
         </Container2>

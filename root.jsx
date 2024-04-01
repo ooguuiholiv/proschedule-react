@@ -6,6 +6,10 @@ import AppRouter from "./src/AppRouter";
 import Dashboard from "./src/components/Dashboard/Dashboard";
 import DashboardEvents from "./src/components/Dashboard/Events/DashboardEvents";
 import EventsPage from "./src/components/Dashboard/EventsSchedule/EventsSchedule";
+import SinglePage from "./src/components/SinglePage";
+import Register from "./src/components/Register";
+import VerifyEmail from "./src/components/VerifyEmail";
+import ResetPassword from "./src/components/ResetPassword";
 
 export const rotas = createBrowserRouter([
   {
@@ -17,13 +21,27 @@ export const rotas = createBrowserRouter([
     element: <RecoveryForm />,
   },
   {
+    path: "/",
+    element: <SinglePage />,
+  },
+  {
+    path: "/auth/register",
+    element: <Register />,
+  },
+  {
+    path: "/auth/verify",
+    element: <VerifyEmail />,
+  },
+  {
+    path: "/auth/reset-pass",
+    element: <ResetPassword />,
+  },
+
+  {
     path: "*",
     element: (
       <PrivateRoute>
         <AppRouter />
-        <Dashboard />
-        <DashboardEvents />
-        <EventsPage />
       </PrivateRoute>
     ),
   },

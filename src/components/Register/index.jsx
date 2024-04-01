@@ -57,7 +57,7 @@ const Input = styled.input`
   margin-left: -0.75rem;
   border: none;
   border-radius: 0px 10px 10px 0px;
-  color: rgba(54, 54, 54, .7);
+  color: rgba(54, 54, 54, 0.7);
   background-color: #ffffff;
   font-family: Public Sans;
   font-size: 15px;
@@ -67,7 +67,7 @@ const Input = styled.input`
   padding: 2px;
 
   &::placeholder {
-    color: rgba(54, 54, 54, .7);
+    color: rgba(54, 54, 54, 0.7);
   }
 `;
 
@@ -162,11 +162,12 @@ export default function Register({ onRegisterClick, onBackToLoginClick }) {
       fullname,
       email,
       password,
+      phone,
     };
-
+    console.log(fullname);
     try {
       // Requisição POST para o endpoint do servidor
-      const response = await fetch("http://localhost:3000/auth/register", {
+      const response = await fetch("http://localhost:7777/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -176,10 +177,12 @@ export default function Register({ onRegisterClick, onBackToLoginClick }) {
 
       if (response.ok) {
         console.log("Usuário cadastrado com sucesso!");
+
         // Limpa os campos de input após o registro bem-sucedido
         setFullname("");
         setEmail("");
         setPassword("");
+        window.location.href = '/auth/login'
       } else {
         console.error("Erro ao cadastrar usuário:", response.statusText);
       }

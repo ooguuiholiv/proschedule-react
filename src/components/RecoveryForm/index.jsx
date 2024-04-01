@@ -58,7 +58,8 @@ const Input = styled.input`
     margin-left: -0.75rem;
     border: none;
     border-radius: 0px 10px 10px 0px;
-    color: #E5E7EB;
+    color: #363636;
+    padding: 10px;
     background-color: #ffffff;
     font-family: Public Sans;
     font-size: 15px;
@@ -143,38 +144,35 @@ const Container2 = styled.div`
     margin: 0;
   }
 `;
-export default function RecoveryForm({ onBackToLoginClick, onRecoverySuccess }) {
+export default function RecoveryForm() {
     const [email, setEmail] = useState('');
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     };
 
-    const handleRecoverPass = () => {
+    const handleRecoverPass = async () => {
         // Envia o email para o servidor
-        fetch('URL_DO_SERVIDOR', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: email }),
+        await fetch("http://localhost:7777/auth/forgot-password", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: email }),
         })
-        .then(response => {
+          .then((response) => {
             if (response.ok) {
-                console.log('Email enviado com sucesso');
-                // Chama a função onRecoverySuccess após o sucesso da recuperação
-                onRecoverySuccess();
+              console.log("Email enviado com sucesso");
+              // Chama a função onRecoverySuccess após o sucesso da recuperação
             } else {
-                console.error('Falha ao enviar email');
-                // Trata a falha de envio
-                onRecoverySuccess(); // Chama a função mesmo em caso de falha
+              console.error("Falha ao enviar email");
+              // Trata a falha de envio
             }
-        })
-        .catch(error => {
-            console.error('Erro ao enviar email:', error);
+          })
+          .catch((error) => {
+            console.error("Erro ao enviar email:", error);
             // Trata o erro de envio
-            onRecoverySuccess(); // Chama a função mesmo em caso de erro
-        });
+          });
     };
 
     return (

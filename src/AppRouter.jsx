@@ -31,14 +31,8 @@ const AppRouter = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<SinglePage />} />
-        <Route path="/auth/register" element={<Register />} />
-        <Route path="/auth/login" element={<LoginForm />} />
-        <Route path="/auth/recovery" element={<RecoveryForm />} />
-        <Route path="/auth/verify" element={<VerifyEmail />} />
-        <Route path="/auth/reset-pass" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/Events" element={<DashboardEvents />} />
+        <Route path="/events" element={<DashboardEvents />} />
         <Route path="/scheduled-events" element={<EventsPage />} />
       </Routes>
     </>

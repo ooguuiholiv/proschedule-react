@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import styled, { createGlobalStyle } from "styled-components";
@@ -145,25 +145,29 @@ export default function ResetPassword() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const onSavePasswordClick = async (password) => {
+  const [token, setToken] = useState("");
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const auth = urlParams.get("token");
+    setToken(auth);
+  }, []);
+  const onSavePasswordClick = async () => {
     try {
-      const response = await fetch("https://api/reset-password", {
+      const response = await fetch("http://localhost:7777/auth/reset-pass", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ newPassword, confirmPassword, token }),
       });
 
       if (!response.ok) {
         throw new Error("Falha ao salvar a nova senha");
       }
 
-      alert("Nova senha salva com sucesso!");
+      window.location.href = "/auth/login";
     } catch (error) {
       console.error("Erro ao salvar nova senha:", error.message);
-      alert("Erro ao salvar nova senha. Por favor, tente novamente.");
     }
   };
 
@@ -172,15 +176,16 @@ export default function ResetPassword() {
       setLoading(true);
 
       if (newPassword !== confirmPassword) {
+        alert("Senhas não coincidem")
         throw new Error("As senhas não coincidem");
       }
 
-      await onSavePasswordClick(newPassword);
+      await onSavePasswordClick();
 
       setNewPassword("");
       setConfirmPassword("");
     } catch (error) {
-      console.error("Erro ao salvar nova senha:", error.message);
+      console.error(" ----  Erro ao salvar nova senha:", error.message);
     } finally {
       setLoading(false);
     }
@@ -194,7 +199,7 @@ export default function ResetPassword() {
           <Image src={pavel} alt="Pavel" />
         </Container1>
         <Container7>
-            <LogoLogin />
+          <LogoLogin />
           <InputContainer>
             <IconContainer>
               <FontAwesomeIcon icon={faLock} />
@@ -203,6 +208,8 @@ export default function ResetPassword() {
             <Input
               type="password"
               placeholder="Nova senha"
+              id="newPassword"
+              name="newPassword"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
@@ -215,6 +222,8 @@ export default function ResetPassword() {
             <Input
               type="password"
               placeholder="Repita a nova senha"
+              id="confirmPassword"
+              name="confirmPassword"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
