@@ -153,13 +153,16 @@ export default function ResetPassword() {
   }, []);
   const onSavePasswordClick = async () => {
     try {
-      const response = await fetch("http://localhost:7777/auth/reset-pass", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ newPassword, confirmPassword, token }),
-      });
+      const response = await fetch(
+        "http://databases-proschedule-backend.dkujoa.easypanel.host:8080/auth/reset-pass",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ newPassword, confirmPassword, token }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Falha ao salvar a nova senha");
