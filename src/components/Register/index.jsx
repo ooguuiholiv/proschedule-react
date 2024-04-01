@@ -151,7 +151,7 @@ const Container2 = styled.div`
     margin: 0;
   }
 `;
-export default function Register({ onRegisterClick, onBackToLoginClick }) {
+export default function Register() {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -167,13 +167,16 @@ export default function Register({ onRegisterClick, onBackToLoginClick }) {
     console.log(fullname);
     try {
       // Requisição POST para o endpoint do servidor
-      const response = await fetch("http://localhost:7777/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
+      const response = await fetch(
+        "http://databases-proschedule-backend.dkujoa.easypanel.host:8080/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+      );
 
       if (response.ok) {
         console.log("Usuário cadastrado com sucesso!");
@@ -191,7 +194,7 @@ export default function Register({ onRegisterClick, onBackToLoginClick }) {
     }
 
     // Chame a função recebida como prop
-    onRegisterClick();
+    
   };
 
   return (

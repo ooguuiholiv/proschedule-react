@@ -153,25 +153,25 @@ export default function RecoveryForm() {
 
     const handleRecoverPass = async () => {
         // Envia o email para o servidor
-        await fetch("http://localhost:7777/auth/forgot-password", {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email: email }),
-        })
+        await fetch(
+          "http://databases-proschedule-backend.dkujoa.easypanel.host:8080/auth/forgot-password",
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: email }),
+          }
+        )
           .then((response) => {
             if (response.ok) {
               console.log("Email enviado com sucesso");
-              // Chama a função onRecoverySuccess após o sucesso da recuperação
             } else {
               console.error("Falha ao enviar email");
-              // Trata a falha de envio
             }
           })
           .catch((error) => {
             console.error("Erro ao enviar email:", error);
-            // Trata o erro de envio
           });
     };
 
